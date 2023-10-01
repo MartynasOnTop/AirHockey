@@ -1,35 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
-public class Puck : MonoBehaviour
+public class ball : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TMP_Text PlayerScore;
+    public TMP_Text EnemyScore;
+    int PlayerPoints = 0;
+    int EnemyPoints = 0;
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        void OnCollisionEnter2D(Collision2D other)
+        PlayerScore.text = PlayerPoints.ToString();
+        EnemyScore.text = EnemyPoints.ToString();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Contains("Goal"))
         {
-            if (other.gameObject.name.Contains("Goal"))
-            {
-                transform.position = Vector3.zero;
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            }
-
-            if (other.gameObject.name.Contains("Enemy Goal"))
-            {
-
-            }
-            
-            if (other.gameObject.name.Contains("Player Goal"))
-            {
-
-            }
+            transform.position = Vector3.zero;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        if (collision.gameObject.name.Contains("Enemy Goal"))
+        {
+            EnemyPoints += 1;
+        }
+        if (collision.gameObject.name.Contains("Player Goal"))
+        {
+            PlayerPoints += 1;
+        }
+
     }
 }
