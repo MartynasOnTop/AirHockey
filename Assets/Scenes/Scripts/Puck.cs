@@ -24,19 +24,23 @@ public class ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Contains("Goal"))
-        {
-            transform.position = Vector3.zero;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
+        
         if (collision.gameObject.name.Contains("Enemy Goal"))
         {
             EnemyPoints += 1;
+
+            transform.position = Vector3.down;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
         }
         if (collision.gameObject.name.Contains("Player Goal"))
         {
             PlayerPoints += 1;
+
+            transform.position = Vector3.up;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        
 
     }
 }

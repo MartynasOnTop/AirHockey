@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float speed = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,13 @@ public class Player : MonoBehaviour
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
+        if (mousePos.y > 0)
+        {
+            mousePos.y = 0;
+        }
+
         //transform.position = mousePos; neveikia
-        GetComponent<Rigidbody2D>().MovePosition(mousePos);
+        var finalPosition = Vector3.MoveTowards(transform.position, mousePos, speed * Time.deltaTime);
+        GetComponent<Rigidbody2D>().MovePosition(finalPosition);
     }
 }
