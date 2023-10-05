@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Contains("Puck"))
+        {
+           GetComponent<AudioSource>().Play();
+        }
+    }
     // Update is called once per frame
     void Update()
     {

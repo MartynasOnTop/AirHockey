@@ -24,8 +24,8 @@ public class ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.name.Contains("Enemy Goal"))
+
+        if (collision.gameObject.name.Contains("EnemyScores"))
         {
             EnemyPoints += 1;
 
@@ -33,14 +33,17 @@ public class ball : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         }
-        if (collision.gameObject.name.Contains("Player Goal"))
+        if (collision.gameObject.name.Contains("PlayerScores"))
         {
             PlayerPoints += 1;
 
             transform.position = Vector3.up;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
-        
+        if (collision.gameObject.name.Contains("Wall"))
+        {
+            GetComponent<AudioSource>().Play();
+        }
 
     }
 }
