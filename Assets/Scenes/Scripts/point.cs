@@ -14,6 +14,7 @@ public class point : MonoBehaviour
         if (collision.gameObject.name.Contains("Puck"))
         {
             GetComponent<AudioSource>().Play();
+            
         }
     }
     // Update is called once per frame
